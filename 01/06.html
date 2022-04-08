@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+</head>
+<body>
+<script>
+    let obj = {x:100}
+    let obj2 = {y:200}
+
+    // 数据代理
+    Object.defineProperty(obj2,'x',{
+        get(){
+            return obj.x
+        },
+        set(value) {
+            obj.x = value;
+        }
+    })
+</script>
+</body>
+</html>

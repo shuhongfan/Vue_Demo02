@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <h1>你好，{{name}}</h1>
+</div>
+
+<script>
+    const v = new Vue({
+        // el:"#app",   // 第一种写法
+
+        // data的第一种写法：对象式
+        // data:{
+        //     name:"尚硅谷"
+        // }
+
+        // data的第二种写法：函数式
+        data:function() {
+            return {
+                name:"shf"
+            }
+        }
+    })
+
+    console.log(v)
+
+    setTimeout(()=>{
+        v.$mount("#app")  // 第二种写法
+    },1000)
+</script>
+</body>
+</html>

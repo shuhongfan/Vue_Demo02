@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+</head>
+<body>
+<div id="root">
+    <h2>学校名称： {{name}}</h2>
+    <h2>学校地址： {{address}}</h2>
+</div>
+<script>
+    let data = {
+        name:"舒洪凡",
+        address:"武汉"
+    }
+
+    const vm = new Vue({
+        el:"#root",
+        data
+    })
+</script>
+</body>
+</html>

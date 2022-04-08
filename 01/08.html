@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <h2>欢迎来到{{name}}学习</h2>
+    <button @click="showInfo1">点我提示信息1</button>
+    <button @click="showInfo2($event,66)">点我提示信息2</button>
+
+    <a href="http://www.baidu.com" @click.prevent="toBaidu">去百度</a>
+
+    <div @click="showInfo1">
+        <button @click.stop="showInfo1">点我提示信息</button>
+    </div>
+
+    <button @click.once="showInfo1">点我提示信息</button>
+
+    <input type="text" @keyup="onKeyUp">
+</div>
+<script>
+    Vue.config.keyCode.huiche=13
+
+    new Vue({
+        el:"#app",
+        data:{
+            name:" 尚硅谷"
+        },
+        methods:{
+            showInfo1(event){
+                console.log(this)
+                alert("同学你好1")
+            },
+            showInfo2(event,number){
+                console.log(this)
+                alert("同学你好2"+number)
+            },
+            toBaidu(event){
+                console.log(event)
+                // event.preventDefault()
+            },
+            onKeyUp(event){
+                console.log(event.keyCode)
+            }
+        }
+    })
+</script>
+</body>
+</html>
