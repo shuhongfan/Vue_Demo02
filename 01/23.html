@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app"></div>
+  <script>
+      // 定义一个构造函数
+    function Demo() {
+        this.a=1
+        this.b=2
+    }
+
+    // 创建一个Demo的实例对象
+    const d= new Demo()
+
+      // 显示原型属性
+    console.log(Demo.prototype)
+
+      // 隐式原型属性
+    console.log(d.__proto__)
+      console.log(Demo.prototyp===d.__proto__)
+
+      // 程序员通过显式原型属性操作原型对象，追加一个x属性，值为99
+      Demo.prototype.x=99
+
+      console.log(d.__proto__.x)
+      console.log("@",d)
+
+
+  </script>
+</body>
+</html>

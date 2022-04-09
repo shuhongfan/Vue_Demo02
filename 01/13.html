@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+<div id="root">
+    <input type="text" v-model="keyword"> <br>
+    <button @click.once="add">添加一个老刘</button>
+    <br>
+    <button @click="sortType=2">年龄升序</button>
+    <button @click="sortType=1">年龄降序</button>
+    <button @click="sortType=0">原顺序</button>
+    <button @click="updateMei">更新</button>
+    <ul>
+        <li v-for="(p,index) in filterPersons" :key="p.id">{{index}}---{{p.id}}---{{p.name}}---{{p.age}} <input type="text"></li>
+    </ul>
+
+    <ul>
+        <li v-for="(c,i) in car" :key="c.name">{{i}}---{{c}}</li>
+    </ul>
+
+    <ul>
+        <li v-for="(char,index) in str">{{index}}---{{char}}</li>
+    </ul>
+
+    <ul>
+        <li v-for="(number,index) of 5">{{index}}----{{number}}</li>
+    </ul>
+</div>
+
+<script>
+    new Vue({
+        el:"#root",
+        data:{
+            sortType:0,  // 0原顺序  1 降序  2升序
+            keyword:'',
+            Persons:[
+                {id:1001,name:'马冬梅',age:18,sex:"女"},
+                {id:1002,name:'周冬雨',age:19,sex:"女"},
+                {id:1003,name:'周杰伦',age:20,sex:"男"},
+                {id:1004,name:'温兆伦',age:22,sex:"男"},
+            ],
+            // filterPersons:[],
+            car:{
+                name:'奥迪A8',
+                price:'70W',
+                color:'黑色'
+            },
+            str:"hello"
+        },
+        methods : {
+            add(){
+                const p = {id:1000,name:'张三0',age:99}
+                this.Persons.unshift(p)
+            },
+            updateMei(){
+                this.Persons[0].name="马老师"
+                this.Persons[0].age=50
+                this.Persons[0].sex='男'
+
+                this.Persons[0]={id:1001,name:'马老师',age:50,sex:"女"}
+            }
+        },
+        computed:{
+            filterPersons(){
+                let arr = this.Persons.filter((p)=>{
+                    return p.name.indexOf(this.keyword) !== -1
+                })
+
+                // 判断是否需要排序
+                if (this.sortType){
+                    arr.sort((p1,p2)=>{
+                        return this.sortType===1?p2.age-p1.age : p1.age - p2.age;
+                    })
+                }
+                return arr;
+            }
+        }
+
+
+        // watch: {
+        //     keyword:{
+        //         immediate: true,
+        //         handler(newValue){
+        //             this.filterPersons = this.Persons.filter(p=>{
+        //                 return p.name.indexOf(newValue)!==-1
+        //             })
+        //         }
+        //     }
+        // }
+    })
+</script>
+</body>
+</html>

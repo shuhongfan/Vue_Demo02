@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <form @submit.prevent="demo">
+            账户： <input type="text" v-model.trim="username"> <br>
+            密码： <input type="text" v-model="password"><br>
+            年龄： <input type="number" v-model.number="age"><br>
+            性别：
+                男 <input type="radio" name="sex" v-model="sex" value="male">
+                女 <input type="radio" name="sex" v-model="sex" value="female"> <br>
+
+            爱好：
+                学习： <input type="checkbox" v-model="hobby" value="study">
+                打游戏： <input type="checkbox" v-model="hobby" value="game">
+                吃饭： <input type="checkbox" v-model="hobby" value="eat">
+            <br>
+
+            所属校区：
+            <select name="" id="" v-model="local">
+                <option value="beijing">北京</option>
+                <option value="shanghai">上海</option>
+                <option value="shenzhen">深圳</option>
+                <option value="wuhan">武汉</option>
+            </select>
+            <br>
+
+            其他信息:
+            <textarea v-model.lazy="other"></textarea>
+            <br>
+            <input type="checkbox" v-model="agree"> 阅读并接收 <a href="">用户协议</a> <br>
+            <button>提交</button>
+        </form>
+    </div>
+
+    <script>
+        const vm=new Vue({
+            el:"#app",
+            data:{
+                username:'',
+                password:'',
+                sex: 'male',
+                hobby:[],
+                local:'shenzhen',
+                agree: false,
+                other:'',
+                age:''
+            },
+            methods:{
+                demo(){
+                    console.log(JSON.stringify(this._data))
+                }
+            }
+        })
+    </script>
+</body>
+</html>

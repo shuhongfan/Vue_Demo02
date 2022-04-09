@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <app></app>
+</div>
+
+
+<script>
+    const hello = Vue.extend({
+        template:`<h1>{{msg}}</h1>`,
+        data(){
+            return{
+                msg:"欢迎来到武汉！"
+            }
+        }
+    })
+
+    // 创建student组件
+    const student = Vue.extend({
+        template:`<div><h2>学生姓名：{{studentName}}</h2><h2>学生年龄：{{age}}</h2></div>`,
+        data(){
+            return{
+                studentName:'张三',
+                age:18
+            }
+        }
+    })
+
+
+    // 创建school组件
+    const school = Vue.extend({
+        template:`<div><student></student><hr><h2>学校名称：{{schoolName}}</h2><h2>学校地址：{{address}}</h2></div>`,
+        data(){
+            return{
+                schoolName:'尚硅谷',
+                address:'武汉'
+            }
+        },
+        components:{
+            student
+        }
+    })
+
+    const app = Vue.extend({
+        template:`<div><hello></hello><hr><school></school></div>`,
+        components:{
+            school,
+            hello
+        }
+    })
+
+    const vm =new Vue({
+        el:"#app",
+        components:{
+            app
+        }
+    })
+</script>
+</body>
+</html>

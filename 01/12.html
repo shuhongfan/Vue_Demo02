@@ -38,7 +38,19 @@
 </head>
 <body>
     <div id="app">
-        <div class="basic" :class="a" @click="changeMood">{{name}}</div>
+        <div class="basic" :class="mood" @click="changeMood">{{name}}</div>
+        <div class="basic" :class="classArr">{{name}}</div>
+        <div class="basic" :class="classObj">{{name}}</div>
+
+        <div :style="styleObje">{{name}}</div>
+        <div :style="[styleObj,styleObj2]">{{name}}</div>
+
+        <template v-if="!n">
+            <div>Angular</div>
+            <div>React</div>
+            <div>Vue</div>
+        </template>
+
     </div>
 
     <script>
@@ -46,11 +58,27 @@
             el:"#app",
             data:{
                 name:'shf',
-                a:'normal'
+                mood:'normal',
+                classArr:['atguigu1','atguigu2','atguigu3'],
+                classObj:{
+                    atguigu1:true,
+                    atguigu2:false
+                },
+                fsize:40,
+                styleObj:{
+                    fontSize:'40px',
+                    color: 'red'
+                },
+                styleObj2:{
+                    backgroundColor :"green"
+                },
+                n:10
             },
             methods : {
                 changeMood(){
-
+                    const arr = ['happy','sad','normal'];
+                    const index = Math.floor(Math.random()*3)
+                    this.mood = arr[index]
                 }
             }
         })

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h2>当前的n值是： <span v-text="n"></span></h2>
+        <h2>放大10倍后的n值是： <span v-big="n"></span></h2>
+        <button @click="add">点我n++</button>
+        <hr>
+
+        <input type="text" v-fbind="n">
+    </div>
+    <script>
+        Vue.directive('big',function (element,binding) {
+            element.innerText=binding.value*10
+        })
+
+        Vue.directive('fbind',{
+            // 指令与元素成功绑定时
+            bind(element,binding){
+                console.log('bind')
+                element.value=binding.value
+            },
+            // 指定所在元素被插入页面时
+            inserted(element,binding){
+                console.log('inserted')
+                element.focus()
+            },
+            // 指令所在的模板被重新解析时
+            update(element,binding){
+                console.log('update')
+                element.value=binding.value
+            }
+        })
+
+        new Vue({
+            el:"#app",
+            data:{
+                n:99
+            },
+            directives:{
+                // big(element,binding){
+                //     console.log(element,binding)
+                //     element.innerText=binding.value*10
+                // },
+                // fbind:{
+                //     // 指令与元素成功绑定时
+                //     bind(element,binding){
+                //         console.log('bind')
+                //         element.value=binding.value
+                //     },
+                //     // 指定所在元素被插入页面时
+                //     inserted(element,binding){
+                //         console.log('inserted')
+                //         element.focus()
+                //     },
+                //     // 指令所在的模板被重新解析时
+                //     update(element,binding){
+                //         console.log('update')
+                //         element.value=binding.value
+                //     }
+                // }
+            },
+            methods:{
+                add(){
+                    this.n=++this.n
+                }
+            }
+        })
+    </script>
+</body>
+</html>

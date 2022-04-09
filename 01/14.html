@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  let data={
+      name:"shf",
+      address:'北京'
+  }
+
+  // 创建一个监视的实例对象。用于监视data中属性的变化
+  const obs = new Observer(data);
+  console.log(obs)
+
+  let vm={}
+  vm._data=data=obs
+
+  function Observer(obj) {
+      const keys = Object.keys(obj);
+      keys.forEach(k=>{
+          Object.defineProperty(this,k,{
+              get(){
+                  return obj[k]
+              },
+              set(val){
+                  obj[k]=val
+              }
+          })
+      })
+  }
+</script>
+</body>
+</html>

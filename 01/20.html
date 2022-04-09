@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <h2>当前的n值是：{{n}}</h2>
+    <button @click="add">点我 n+1</button>
+    <button @click="bye">点我销毁VM</button>
+</div>
+
+<script>
+    const vm = new Vue({
+        el:"#app",
+        // template:`<h1 :style="{opacity}">{{text}}</h1>`,
+        data:{
+            n:1
+        },
+        methods:{
+          add(){
+                this.n=this.n+1
+          },
+            bye(){
+                console.log("destroy")
+              this.$destroy()
+            }
+        },
+        // Vue完成模板的解析并把初始的真实DOM元素放入页面后
+        mounted(){
+
+        },
+        beforeCreate(){
+            console.log("beforeCreate")
+            console.log(this)
+        },
+        created(){
+            console.log('create')
+            console.log(this)
+        },
+        beforeMount(){
+            console.log('create')
+            console.log(this)
+            // debugger
+        },
+        beforeUpdate(){
+            console.log("beforeUpdate")
+        },
+        updated(){
+            console.log("updated")
+            debugger
+        }
+    })
+</script>
+</body>
+</html>
