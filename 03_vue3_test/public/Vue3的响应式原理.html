@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let person = {
+        name:'张三',
+        age:18
+    }
+
+    let obj = {
+        a:1,
+        b:2
+    }
+    Reflect.defineProperty(obj,'c',{
+        get() {
+            return 3
+        }
+    })
+    Reflect.defineProperty(obj,'c',{
+        get() {
+            return 4
+        }
+    })
+
+    const p = new Proxy(person,{
+        get(target, p, receiver) {
+            // console.log(target,p,receiver)
+            console.log("有人读取p身上的"+p+"属性")
+            // return target[p]
+            return Reflect.get(target,p)
+        },
+        set(target, p, value, receiver) {
+            // console.log(target, p, value, receiver)
+            console.log(`有人修改了p身上的${p}属性 或 追加，我要去更新界面了`)
+            // target[p]=value
+            Reflect.set(target,p,value)
+        },
+        deleteProperty(target, p) {
+            // console.log(target,p)
+            console.log(`有人删除了p身上的${p}属性，我要去更新界面了`)
+            return delete target[p]
+            return Reflect.defineProperty(target,p)
+        }
+    })
+
+
+
+
+    /**
+     let p = {}
+    Object.defineProperty(p,'name',{
+        configurable:true,
+        get() {
+            console.log("有人读取name时调用")
+            return person.name
+        },
+        set(v) {
+            console.log("有人修改nane属性，我发现了，我去修改")
+            person.name=v
+        }
+    })
+
+    Object.defineProperty(p,'age',{
+        get() {
+            console.log("有人读取age属性")
+            return person.age
+        },
+        set(v) {
+            console.log("有人修改了age属性，我发现了，我要去修改")
+            person.age=v
+        }
+    })
+     */
+
+</script>
+</body>
+</html>
