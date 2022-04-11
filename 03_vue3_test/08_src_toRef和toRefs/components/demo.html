@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let person={
+        name:'张三',
+        age:18
+    }
+
+    let p = new Proxy(person,{
+        set(target, p, value, receiver) {
+            console.log(`${p}被修改了，我要去更新界面了`)
+            Reflect.set(target,p,value)
+        }
+    })
+</script>
+</body>
+</html>
